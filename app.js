@@ -1,3 +1,4 @@
+
 window.onload = function(){
 
   var submitButton = document.querySelector('form div:last-child input');
@@ -8,15 +9,20 @@ window.onload = function(){
   var today = currentdate.getDay()
 
   document.querySelector('#today').innerText = currentdate;
+  //sets current date
+  var dayColors = {
 
-  var dayColors = {};
+  };
 
+  // array of colors
 
 
   getDayColorsFromLocalStorage()
+  //function to grab colors
 
   submitButton.addEventListener("click", function(event){
     event.preventDefault();
+    //when submit, prevent default with function
 
     updateDayColors();
 
@@ -34,7 +40,12 @@ window.onload = function(){
     if (window.localStorage.colorData) {
       var colorData = JSON.parse(window.localStorage.colorData);
       var todaysColor = colorData[today];
+      console.log(colorData);
       body.style.backgroundColor = todaysColor;
+      for(var key in colorData){
+        //$("#" + key).val(colorData[key]);
+        document.getElementById(key).value = colorData[key];
+      }
     }
   }
 
